@@ -5,13 +5,12 @@
   "main": "index-commonjs.js",
   "module": "index.js",
   "scripts": {
-    "test": "rollup index.js --file index-commonjs.js --format cjs && node test/test.js",
+    "test": "node -r esm test/test-flow.js",
     "pretty-fix": "prettier --write '**/*.{js,jsx}'",
     "lint": "eslint '**/*.{js,jsx}'",
     "pretty-check": "prettier --check '**/*.{js,jsx}'",
     "lint-fix": "eslint --fix '**/*.{js,jsx}'",
-    "lint-check": "eslint '**/*.{js,jsx}'",
-    "create-cjs": "rollup index.js --file index-commonjs.js --format cjs"
+    "lint-check": "eslint '**/*.{js,jsx}'"
   },
   "repository": {
     "type": "git",
@@ -23,7 +22,10 @@
     "url": "https://github.com/Agoric/MakeFlowComm/issues"
   },
   "homepage": "https://github.com/Agoric/MakeFlowComm#readme",
-  "dependencies": {},
+  "dependencies": {
+    "@agoric/harden": "^0.0.2",
+    "esm": "^3.2.5"
+  },
   "devDependencies": {
     "eslint": "^5.3.0",
     "eslint-config-airbnb": "^17.1.0",

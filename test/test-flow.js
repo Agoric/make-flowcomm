@@ -1,6 +1,5 @@
-import { test } from 'tape-promise/tape';
-
-import { Flow, makeUnresolvedRemoteVow } from '../src/flow/flowcomm';
+import { test} from 'tape';
+import { Flow, makeUnresolvedRemoteVow } from '../index';
 
 test('tape works', t => {
   t.equal(1, 1);

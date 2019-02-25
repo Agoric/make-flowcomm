@@ -7,7 +7,7 @@
 
 /* eslint-disable-next-line global-require, import/no-extraneous-dependencies */
 import harden from '@agoric/harden';
-import { insist, insistFn } from '../insist';
+import { insist, insistFn } from './insist';
 
 // const debugLog = console.log;
 function debugLog() {} // disabled

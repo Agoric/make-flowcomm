@@ -622,3 +622,5 @@ const { makePresence, makeUnresolvedRemoteVow, resolutionOf, handlerOf, isVow,
 export { makePresence, makeUnresolvedRemoteVow, resolutionOf, handlerOf, isVow,
            Flow, Vow, makeResolver, asVow };
 export default Flow;
+
+export { makeFlowComm };

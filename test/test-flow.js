@@ -1,5 +1,5 @@
 import { test} from 'tape';
-import { Flow, makeUnresolvedRemoteVow } from '../index';
+import { makeFlowComm } from '../index';
 
 test('tape works', t => {
   t.equal(1, 1);
@@ -20,6 +20,7 @@ test('async tests pass', async t => {
 });
 
 test('unresolved send queues in order', async t => {
+  const { Flow } = makeFlowComm();
   const f1 = new Flow();
   let r1;
   const v1 = f1.makeVow(r => (r1 = r));
@@ -37,6 +38,7 @@ test('unresolved send queues in order', async t => {
 });
 
 test('resolved send queues in order', async t => {
+  const { Flow } = makeFlowComm();
   const f1 = new Flow();
   let r1;
   const v1 = f1.makeVow(r => (r1 = r));
@@ -48,6 +50,7 @@ test('resolved send queues in order', async t => {
 });
 
 test('pre-resolved send queues in order', async t => {
+  const { Flow } = makeFlowComm();
   const f1 = new Flow();
   let r1;
   const v1 = f1.makeVow(r => (r1 = r));
@@ -59,6 +62,7 @@ test('pre-resolved send queues in order', async t => {
 });
 
 test('order across forwarding', async t => {
+  const { Flow } = makeFlowComm();
   let c = 0;
   console.log(`s ${(c += 1)}`);
   const f1 = new Flow();
@@ -79,6 +83,7 @@ test('order across forwarding', async t => {
 });
 
 test('all flow', t => {
+  const { Flow } = makeFlowComm();
   const f1 = new Flow();
   let r1;
   const v1 = f1.makeVow(r => (r1 = r));
@@ -109,6 +114,7 @@ test('all flow', t => {
 });
 
 test('remote vow', t => {
+  const { Flow, makeUnresolvedRemoteVow } = makeFlowComm();
   const results = [];
   const serializer = {
     allocateSwissStuff() {
@@ -151,6 +157,7 @@ test('remote vow', t => {
 });
 
 test('JSON serialize Vow', t => {
+  const { Flow } = makeFlowComm();
   const f1 = new Flow();
   /* eslint-disable-next-line no-unused-vars */
   let r1;
@@ -161,6 +168,7 @@ test('JSON serialize Vow', t => {
 });
 
 test('simple broken vow', async t => {
+  const { Flow } = makeFlowComm();
   const f1 = new Flow();
   let r1;
   const v1 = f1.makeVow(r => (r1 = r));
@@ -178,6 +186,7 @@ test('simple broken vow', async t => {
 });
 
 test('error across forwarding', async t => {
+  const { Flow } = makeFlowComm();
   let c = 0;
   console.log(`s ${(c += 1)}`);
   const f1 = new Flow();

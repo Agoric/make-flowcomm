@@ -1,5 +1,5 @@
 import { test} from 'tape';
-import { makeFlowComm } from '../index';
+import makeFlowComm from '../index';
 
 test('tape works', t => {
   t.equal(1, 1);

@@ -9,7 +9,7 @@
 import harden from '@agoric/harden';
 import { insist, insistFn } from './insist';
 
-function makeFlowComm() {
+export default function makeFlowComm() {
   // const debugLog = console.log;
   function debugLog() {} // disabled
 
@@ -615,12 +615,3 @@ function makeFlowComm() {
   return { makePresence, makeUnresolvedRemoteVow, resolutionOf, handlerOf, isVow,
            Flow, Vow, makeResolver, asVow };
 }
-
-const flowcomm = makeFlowComm();
-const { makePresence, makeUnresolvedRemoteVow, resolutionOf, handlerOf, isVow,
-        Flow, Vow, makeResolver, asVow } = flowcomm;
-export { makePresence, makeUnresolvedRemoteVow, resolutionOf, handlerOf, isVow,
-           Flow, Vow, makeResolver, asVow };
-export default Flow;
-
-export { makeFlowComm };

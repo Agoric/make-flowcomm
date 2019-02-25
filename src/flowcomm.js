@@ -9,6 +9,7 @@
 import harden from '@agoric/harden';
 import { insist, insistFn } from './insist';
 
+function makeFlowComm() {
   // const debugLog = console.log;
   function debugLog() {} // disabled
 
@@ -377,7 +378,7 @@ import { insist, insistFn } from './insist';
 
   const farVows = new WeakMap(); // maps Presence to { vatID, swissnum, handler }
 
-  export function makePresence(serializer, vatID, swissnum) {
+  function makePresence(serializer, vatID, swissnum) {
     const presence = harden({});
     const handler = new FarRemoteHandler(serializer, vatID, swissnum, presence);
     const rec = { vatID, swissnum, handler };
@@ -385,7 +386,7 @@ import { insist, insistFn } from './insist';
     return presence;
   }
 
-  export function makeUnresolvedRemoteVow(
+  function makeUnresolvedRemoteVow(
     serializer,
     vatID,
     swissnum,
@@ -459,7 +460,7 @@ import { insist, insistFn } from './insist';
     return vowToInner.get(value);
   }
 
-  export function resolutionOf(value) {
+  function resolutionOf(value) {
     const inner = getInnerVow(value);
     if (!inner) {
       return undefined;
@@ -469,7 +470,7 @@ import { insist, insistFn } from './insist';
     return shortHandler.value;
   }
 
-  export function handlerOf(value) {
+  function handlerOf(value) {
     const inner = getInnerVow(value);
     if (!inner) {
       return undefined;
@@ -479,7 +480,7 @@ import { insist, insistFn } from './insist';
     return shortenForwards(firstR, inner);
   }
 
-  export function isVow(value) {
+  function isVow(value) {
     return vowToInner.has(value);
   }
 
@@ -611,5 +612,13 @@ import { insist, insistFn } from './insist';
 
   const asVow = Vow.resolve;
 
-export { Flow, Vow, makeResolver, asVow };
+  return { makePresence, makeUnresolvedRemoteVow, resolutionOf, handlerOf, isVow,
+           Flow, Vow, makeResolver, asVow };
+}
+
+const flowcomm = makeFlowComm();
+const { makePresence, makeUnresolvedRemoteVow, resolutionOf, handlerOf, isVow,
+        Flow, Vow, makeResolver, asVow } = flowcomm;
+export { makePresence, makeUnresolvedRemoteVow, resolutionOf, handlerOf, isVow,
+           Flow, Vow, makeResolver, asVow };
 export default Flow;

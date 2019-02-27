@@ -1,4 +1,4 @@
-import { test } from 'tape';
+import test from 'tape-promise/tape';
 import makeFlowComm from '../index';
 
 test('tape works', t => {

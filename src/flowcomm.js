@@ -618,15 +618,5 @@ export default function makeFlowComm() {
 
   const asVow = Vow.resolve;
 
-  return {
-    makePresence,
-    makeUnresolvedRemoteVow,
-    resolutionOf,
-    handlerOf,
-    isVow,
-    Flow,
-    Vow,
-    makeResolver,
-    asVow,
-  };
+  return { makePresence, makeUnresolvedRemoteVow, isVow, Flow, Vow };
 }

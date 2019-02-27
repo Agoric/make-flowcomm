@@ -17,7 +17,7 @@ The API of Vow is:
   * `v.put(name, value)` is `v.then(val => val[name] = value)`. Its return Vow always resolves to `undefined`.
   * `v.delete(name)` is `v.then(val => delete val[name])`. The returned Vow resolves to `true`.
 These methods are more flexible than `then` because the Vow might forward these calls over the network to another computer. The call can be delivered before the Vow itself resolves to a specific value, enabling "promise pipelining".
-* `v2 = v.call(op, args)`: the generic form of get/post/send/fcall/put/delete, for use by a syntax rewriter. `v!foo(arg)` is rewritten into `Vow.resolve(v).send('foo', arg)`, `v!foo` becomes `Vow.resolve(v).get('foo')`, etc.
+* `v2 = v.call(op, name, args)`: the generic form of get/post/send/fcall/put/delete, for use by a syntax rewriter. `v!foo(arg1, arg2)` is rewritten into `Vow.resolve(v).call('send', 'foo', [arg1, arg2])`, `v!foo` becomes `Vow.resolve(v).get('foo')`, etc.
 * `v2 = v.fork()`: return a new Vow on a distinct Flow
 * `v = Vow.all(answerPs)`: return a new Vow that fires when all of the input Vows have fired successfully, with an array of their results. TODO: is this supposed to reject when any of the input Vows rejects? Our current implementation doesn't do that.
 * `v = Vow.join(xP, yP)`: return a new Vow that fires when and if the two input Vows resolve to the same value (using `Object.is()` for comparison).

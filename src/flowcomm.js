@@ -182,7 +182,10 @@ export default function makeFlowComm() {
     processBlockedFlows(blockedFlows) {
       // debugLog(`Appending blocked flow ${blockedFlows}`);
 
-      insist(!this.forwardedTo, 'INTERNAL: Must be unforwarded to accept flows.');
+      insist(
+        !this.forwardedTo,
+        'INTERNAL: Must be unforwarded to accept flows.',
+      );
       this.blockedFlows.push(...blockedFlows);
     }
 
@@ -242,6 +245,7 @@ export default function makeFlowComm() {
 
     // Unblock flows so that messages are delivered
     // TODO: flow interation here must be fixed when we enforce ordering
+    /* eslint-disable-next-line consistent-return */
     processBlockedFlows(blockedFlows) {
       if (this.value) {
         blockedFlows.forEach(flow => {
@@ -450,6 +454,7 @@ export default function makeFlowComm() {
   const resolverToInner = new WeakMap();
 
   // TODO change to throw TypeError if these aren't present.
+  /* eslint-disable-next-line no-unused-vars */
   function validInnerResolver(value) {
     const result = resolverToInner.get(value);
     insist(result, 'Valid instance required');
@@ -503,6 +508,7 @@ export default function makeFlowComm() {
         : (...args) => {
             const handler = new UnresolvedHandler();
             // TODO don't make an outer resolver
+            /* eslint-disable-next-line no-unused-vars */
             const resultR = makeResolver(handler);
             this.flow.enqueue(this, new PendingDelivery(op, args, handler));
             /* eslint-disable-next-line no-constant-condition */
@@ -612,6 +618,15 @@ export default function makeFlowComm() {
 
   const asVow = Vow.resolve;
 
-  return { makePresence, makeUnresolvedRemoteVow, resolutionOf, handlerOf, isVow,
-           Flow, Vow, makeResolver, asVow };
+  return {
+    makePresence,
+    makeUnresolvedRemoteVow,
+    resolutionOf,
+    handlerOf,
+    isVow,
+    Flow,
+    Vow,
+    makeResolver,
+    asVow,
+  };
 }

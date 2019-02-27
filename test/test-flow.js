@@ -1,4 +1,4 @@
-import { test} from 'tape';
+import { test } from 'tape';
 import makeFlowComm from '../index';
 
 test('tape works', t => {
@@ -114,7 +114,7 @@ test('all flow', t => {
 });
 
 test('remote vow', t => {
-  const { Flow, makeUnresolvedRemoteVow } = makeFlowComm();
+  const { makeUnresolvedRemoteVow } = makeFlowComm();
   const results = [];
   const serializer = {
     allocateSwissStuff() {

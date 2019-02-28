@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Agoric/MakeFlowComm.git"
+    "url": "git+https://github.com/Agoric/make-flowcomm.git"
   },
   "author": "Agoric",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/Agoric/MakeFlowComm/issues"
+    "url": "https://github.com/Agoric/make-flowcomm/issues"
   },
-  "homepage": "https://github.com/Agoric/MakeFlowComm#readme",
+  "homepage": "https://github.com/Agoric/make-flowcomm#readme",
   "dependencies": {
     "@agoric/harden": "^0.0.2",
     "esm": "^3.2.5"

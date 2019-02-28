@@ -234,12 +234,10 @@ export default function makeFlowComm() {
   }
   harden(FulfilledHandler);
 
-  class FarRemoteHandler extends UnresolvedHandler {
-    constructor(serializer, vatID, swissnum, presence = null) {
+  class MessagingHandler extends UnresolvedHandler {
+    constructor(messageHandler, presence) {
       super();
-      this.serializer = serializer;
-      this.vatID = vatID;
-      this.swissnum = swissnum;
+      this.messageHandler = messageHandler;
       this.value = presence; // note: other folks test for '.value', so don't rename it
     }
 
@@ -380,14 +378,17 @@ export default function makeFlowComm() {
     return result;
   }
 
-  const farVows = new WeakMap(); // maps Presence to { vatID, swissnum, handler }
+  // TODO: does this need to be a regular Map? If they drop the Vow, then
+  // reconstruct one, the new one needs to be identical to all subsequent
+  // ones. So maybe we need to repopulate the WeakMap every time we build a
+  // new Vow object. But then we need to remember our Presences too.
+  const farVows = new WeakMap(); // maps Presence to vow
 
-  function makePresence(serializer, vatID, swissnum) {
+  function makePresence(handler) {
     const presence = harden({});
-    const handler = new FarRemoteHandler(serializer, vatID, swissnum, presence);
-    const rec = { vatID, swissnum, handler };
+    const handler = new MessagingHandler(handler, presence);
     farVows.set(presence, rec);
-    return presence;
+    return { vow, presence };
   }
 
   function makeUnresolvedRemoteVow(

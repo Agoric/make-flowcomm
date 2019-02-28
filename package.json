@@ -21,6 +21,7 @@
   "homepage": "https://github.com/Agoric/MakeFlowComm#readme",
   "dependencies": {
     "@agoric/harden": "^0.0.2",
+    "@agoric/nat": "^2.0.1",
     "esm": "^3.2.5"
   },
   "devDependencies": {

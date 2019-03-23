@@ -1,6 +1,6 @@
-git clone https://github.com/AgoricBot/MakeFlowComm.git
-cd MakeFlowComm
-git remote add upstream https://github.com/Agoric/MakeFlowComm.git
+git clone https://github.com/AgoricBot/make-flowcomm.git
+cd make-flowcomm
+git remote add upstream https://github.com/Agoric/make-flowcomm.git
 git fetch upstream
 git checkout master
 git rebase upstream/master
@@ -29,7 +29,7 @@ cd ..
 if [ "$files_changed" = true ] ; then
   git add . 
   git commit -m "results of running npm audit fix"
-  git remote set-url origin https://AgoricBot:$GITHUB_TOKEN@github.com/AgoricBot/MakeFlowComm.git
+  git remote set-url origin https://AgoricBot:$GITHUB_TOKEN@github.com/AgoricBot/make-flowcomm.git
   git push origin npm-audit-fix
-  hub pull-request --no-edit --base Agoric/MakeFlowComm:master
+  hub pull-request --no-edit --base Agoric/make-flowcomm:master
 fi

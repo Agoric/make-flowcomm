@@ -16,16 +16,6 @@ else
   files_changed=true
 fi
 
-# Do the same thing with the package.json in the integration-test folder
-cd integration-test
-if npm audit ; then
-    echo "Nothing to fix"
-else
-  npm audit fix
-  files_changed=true
-fi
-cd ..
-
 if [ "$files_changed" = true ] ; then
   git add . 
   git commit -m "results of running npm audit fix"
